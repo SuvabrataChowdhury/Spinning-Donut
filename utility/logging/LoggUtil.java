@@ -6,7 +6,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-//TODO: Make it a static class
+import utility.constants.FilePaths;
 
 public class LoggUtil{
     private final Logger LOGGER;
@@ -20,7 +20,7 @@ public class LoggUtil{
     public LoggUtil(String classNameString) throws SecurityException, IOException{
         LOGGER = Logger.getLogger(classNameString);
         
-        this.fileHandler = new FileHandler("%h/MiniProjects/Spinning-Donut/project.log",!isFirstCall);
+        this.fileHandler = new FileHandler(FilePaths.MAC_LOG_FILE.getPath(),!isFirstCall);
         
         fileHandler.setFormatter(new SimpleFormatter());
 

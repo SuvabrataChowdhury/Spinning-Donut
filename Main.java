@@ -2,19 +2,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import spinningDonut.elements.Screen;
+import spinningDonut.exceptions.ScreenCreationException;
 
 class Main{
 
     public static void main(String[] args) {
 
         try {
-            Screen screen1 = new Screen();
-            Screen screen2 = new Screen(500,500,new ArrayList<>());
-            Screen screen3 = new Screen();
-            Screen screen4 = new Screen();
-            Screen screen5 = new Screen();
-            Screen screen6 = new Screen();
-        } catch (SecurityException | IOException e) {
+            //Screen screen1 = Screen.getInstance();
+            Screen screen2 = Screen.getInstance(500,500,new ArrayList<>());
+            // Screen screen3 = Screen.getInstance();
+            // Screen screen4 = Screen.getInstance();
+            // Screen screen5 = Screen.getInstance();
+            // Screen screen6 = Screen.getInstance();
+        } catch (SecurityException | IOException | ScreenCreationException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
