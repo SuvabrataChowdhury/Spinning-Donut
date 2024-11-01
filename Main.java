@@ -3,21 +3,24 @@ import java.util.ArrayList;
 
 import spinningDonut.elements.Screen;
 import spinningDonut.exceptions.ScreenCreationException;
+import utility.logging.LoggUtil;
 
 class Main{
+    private static LoggUtil LOGGER = LoggUtil.getInstance(Main.class.getName());
 
     public static void main(String[] args) {
 
         try {
-            //Screen screen1 = Screen.getInstance();
+            Screen screen1 = Screen.getInstance();
             Screen screen2 = Screen.getInstance(500,500,new ArrayList<>());
             // Screen screen3 = Screen.getInstance();
             // Screen screen4 = Screen.getInstance();
             // Screen screen5 = Screen.getInstance();
             // Screen screen6 = Screen.getInstance();
-        } catch (SecurityException | IOException | ScreenCreationException e) {
+        } catch (SecurityException | IOException | ScreenCreationException exception) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("Exception");
+            LOGGER.severe("Exception Generated: ",exception);
         }
 
         // System.out.println("Screen created: \n"+screen);
