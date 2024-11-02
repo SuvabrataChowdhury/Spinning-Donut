@@ -15,12 +15,9 @@ public class LoggUtil{
     private Logger LOGGER;
     private FileHandler fileHandler;
     private static boolean isFirstCall = true;
-    
-    public FileHandler getFileHandler() {
-        return fileHandler;
-    }
 
     private LoggUtil(String className) {
+        
         LOGGER = Logger.getLogger(className);
         
         try {
@@ -47,18 +44,19 @@ public class LoggUtil{
 
         return LoggUtil.instance;
     }
-
-    // public Logger getLOGGER() {
-    //     return LOGGER;
-    // }
     
+    //Log info
     public void info(String msg){
         this.LOGGER.info(msg);
-        this.fileHandler.close();
     }
 
+    //Log warnings
+    public void warning(String string) {
+        this.LOGGER.warning(string);
+    }
+
+    //Log exceptions
     public void severe(String msg, Exception exception){
         this.LOGGER.log(Level.SEVERE,msg,exception);
-        this.fileHandler.close();
     }
 }

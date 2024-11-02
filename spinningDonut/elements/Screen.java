@@ -20,6 +20,7 @@ public class Screen {
 
     //Create a default screen
     private Screen() throws SecurityException, IOException{
+        LOGGER.info("Creating new Screen");
        
         this.width = ScreenConstants.DEFAULT_SCREEN_WIDTH.getValueInPixels();
         this.height = ScreenConstants.DEFAULT_SCREEN_HEIGHT.getValueInPixels();
@@ -30,6 +31,7 @@ public class Screen {
 
     //Create a user-defined screen
     private Screen(int width,int height,List<Item> items) throws SecurityException, IOException{
+        LOGGER.info("Creating new Screen");
 
         this.width = width;
         this.height = height;
@@ -41,16 +43,15 @@ public class Screen {
     public static Screen getInstance() throws SecurityException, IOException, ScreenCreationException{
         if(null == Screen.instance)
             Screen.instance = new Screen();
+        else
+            LOGGER.warning("Attempting to recreate screen");
 
         return Screen.instance;
     }
 
     public static Screen getInstance(int width,int height,List<Item> items) throws SecurityException, IOException, ScreenCreationException{
-        if(null != Screen.instance){
-            ScreenCreationException exception = new ScreenCreationException("Screen already exists");
-            // Screen.getLOGGER().severe("Exception Generated: " + exception);
-            throw exception;
-        }
+        if(null != Screen.instance)
+            throw new ScreenCreationException("Screen already exists");
 
         Screen.instance = new Screen(width,height,items);
         return Screen.instance;
