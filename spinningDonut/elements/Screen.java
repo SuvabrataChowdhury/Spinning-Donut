@@ -6,9 +6,12 @@ import java.util.List;
 
 import utility.constants.ScreenConstants;
 import utility.logging.LoggUtil;
+import spinningDonut.exceptions.*;
 
 public class Screen {
-    private final LoggUtil LOGGER = new LoggUtil(this.getClass().getName());
+    private static Screen instance = null;
+
+    private static final LoggUtil LOGGER = LoggUtil.getInstance(Screen.class.getName());
 
     private final int width;
     private final int height;
@@ -16,7 +19,8 @@ public class Screen {
     private List<Item> items;
 
     //Create a default screen
-    public Screen() throws SecurityException, IOException{
+    private Screen() throws SecurityException, IOException{
+        LOGGER.info("Creating new Screen");
        
         this.width = ScreenConstants.DEFAULT_SCREEN_WIDTH.getValueInPixels();
         this.height = ScreenConstants.DEFAULT_SCREEN_HEIGHT.getValueInPixels();
@@ -26,13 +30,31 @@ public class Screen {
     }
 
     //Create a user-defined screen
-    public Screen(int width,int height,List<Item> items) throws SecurityException, IOException{
+    private Screen(int width,int height,List<Item> items) throws SecurityException, IOException{
+        LOGGER.info("Creating new Screen");
 
         this.width = width;
         this.height = height;
         this.items = items;
 
         LOGGER.info("Instansiated User Defined Screen: "+this);
+    }
+
+    public static Screen getInstance() throws SecurityException, IOException, ScreenCreationException{
+        if(null == Screen.instance)
+            Screen.instance = new Screen();
+        else
+            LOGGER.warning("Attempting to recreate screen");
+
+        return Screen.instance;
+    }
+
+    public static Screen getInstance(int width,int height,List<Item> items) throws SecurityException, IOException, ScreenCreationException{
+        if(null != Screen.instance)
+            throw new ScreenCreationException("Screen already exists");
+
+        Screen.instance = new Screen(width,height,items);
+        return Screen.instance;
     }
 
     public int getWidth() {
