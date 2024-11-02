@@ -1,8 +1,13 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
+import spinningDonut.elements.Item;
 import spinningDonut.elements.Screen;
+import spinningDonut.elements.Shape;
+import spinningDonut.elements.Square;
 import spinningDonut.exceptions.ScreenCreationException;
+import utility.constants.ScreenConstants;
+import utility.constants.Thickness;
 import utility.logging.LoggUtil;
 
 class Main{
@@ -11,26 +16,16 @@ class Main{
     public static void main(String[] args) throws SecurityException, IOException, ScreenCreationException {
 
         try {
-            Screen screen1 = Screen.getInstance();
-            Screen screen2 = Screen.getInstance(500,500,new ArrayList<>());
+            Screen screen = Screen.getInstance(35,35,new ArrayList<>());
+
+            Shape square = new Square(5);
+            screen.addItem((Item)square,ScreenConstants.center.SCREEN_CENTER.getCenter());
+            screen.render(Thickness.DEFAULT);
             
         } catch (SecurityException | IOException | ScreenCreationException exception) {
-            // TODO Auto-generated catch block
-            System.out.println("Exception");
+          
             LOGGER.severe("Exception",exception);
-            // LOGGER.severe("Exception Generated: ",exception);
         }
-
-        Screen screen3 = Screen.getInstance();
-        Screen screen4 = Screen.getInstance();
-        Screen screen5 = Screen.getInstance();
-        Screen screen6 = Screen.getInstance();
-
-        // System.out.println("Screen created: \n"+screen);
-        //Shape shape = new Donut(Utils.DEFAULT_DONUT_INNER_RADIUS,Utils.DEFAULT_DONUT_OUTER_RADIUS);
-
-        // Animation animation = new Animation(screen,AnimationUtils.DEFAULT_FRAME_RATE);
-        // animation.animate(shape,AnimationUtils.ActionUtils.ROTATE_XYZ);
 
         System.out.println("Will be rendering dount");
     }

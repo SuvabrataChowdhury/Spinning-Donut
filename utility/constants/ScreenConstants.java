@@ -1,16 +1,37 @@
 package utility.constants;
 
-public enum ScreenConstants {
-    DEFAULT_SCREEN_WIDTH(250),
-    DEFAULT_SCREEN_HEIGHT(250);
+import utility.dataTypes.Point2D;
 
-    private final int valueInPixels;
+public class ScreenConstants{
 
-    ScreenConstants(int pixels) {
-        this.valueInPixels = pixels;
+    public enum size{
+        DEFAULT_SCREEN_WIDTH(50),
+        DEFAULT_SCREEN_HEIGHT(50);
+
+        private final int valueInPixels;
+        size(int pixels) {
+            this.valueInPixels = pixels;
+        }
+
+        public int getValueInPixels() {
+            return valueInPixels;
+        }
     }
 
-    public int getValueInPixels() {
-        return valueInPixels;
+    public enum center{
+        SCREEN_CENTER(
+            new Point2D<Integer,Integer>(ScreenConstants.size.DEFAULT_SCREEN_WIDTH.getValueInPixels()/2,
+                                        ScreenConstants.size.DEFAULT_SCREEN_HEIGHT.getValueInPixels()/2
+                                        )
+            );
+
+        private final Point2D<Integer,Integer> center;
+        center(Point2D<Integer,Integer> center){
+            this.center = center;
+        }
+
+        public Point2D<Integer,Integer> getCenter(){
+            return center;
+        }
     }
 }
