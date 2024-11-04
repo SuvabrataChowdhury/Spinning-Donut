@@ -29,5 +29,10 @@ public class Item {
         return "Item [pixels=" + pixels + "]";
     }
 
-    
+    public void moveCenter(Point2D<Integer,Integer> dest) {
+        this.pixels.stream().forEach(pixel -> {
+            pixel.setX(pixel.getX()+dest.getX());
+            pixel.setY(pixel.getY()+dest.getY());
+        });
+    }
 }

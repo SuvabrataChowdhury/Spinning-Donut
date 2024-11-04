@@ -16,10 +16,23 @@ class Main{
     public static void main(String[] args) throws SecurityException, IOException, ScreenCreationException {
 
         try {
-            Screen screen = Screen.getInstance(35,35,new ArrayList<>());
+            Screen screen = Screen.getInstance();
 
-            Shape square = new Square(5);
-            screen.addItem((Item)square,ScreenConstants.center.SCREEN_CENTER.getCenter());
+            Item square = new Square(25);
+            screen.addItem(square,ScreenConstants.position.DEFAULT_SCREEN_CENTER.getCenter());
+
+            // Item square1 = new Square(20);
+            // screen.addItem(square1,ScreenConstants.position.DEFAULT_SCREEN_CENTER.getCenter());
+
+            Item square2 = new Square(15);
+            screen.addItem(square2,ScreenConstants.position.DEFAULT_SCREEN_CENTER.getCenter());
+
+            // Item square3 = new Square(10);
+            // screen.addItem(square3,ScreenConstants.position.DEFAULT_SCREEN_CENTER.getCenter());
+
+            Item square4 = new Square(5);
+            screen.addItem(square4,ScreenConstants.position.DEFAULT_SCREEN_CENTER.getCenter());
+
             screen.render(Thickness.DEFAULT);
             
         } catch (SecurityException | IOException | ScreenCreationException exception) {

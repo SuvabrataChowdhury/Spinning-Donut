@@ -1,7 +1,7 @@
 package utility.constants;
 
 public enum Thickness {
-    DEFAULT('*');
+    DEFAULT('|');
 
     private final char plotChar;
 

@@ -33,7 +33,7 @@ public class Screen {
         LOGGER.info("Instansiated Default Screen: "+this);
     }
 
-    //Create a user-defined screen
+    //Create a user-defined screen 
     private Screen(int width,int height,List<Item> items) throws SecurityException, IOException{
         LOGGER.info("Creating new Screen");
 
@@ -82,19 +82,8 @@ public class Screen {
         this.items.add(item);
     }
 
-    public void addItem(Item item, Point2D<Integer,Integer> center) {
-        // item.getPixels().stream().forEach(pixel -> {
-        //     pixel.setX(pixel.getX()+center.getX());
-        //     pixel.setY(pixel.getY()+center.getY());
-        // });
-
-        List<Point2D<Integer,Integer>> itemPixels = item.getPixels();
-
-        for(Point2D<Integer,Integer> pixel:itemPixels){
-            pixel.setX(pixel.getX()+center.getX());
-            pixel.setY(pixel.getY()+center.getY());
-        }
-
+    public void addItem(Item item, Point2D<Integer,Integer> itemCenterPos) {
+        item.moveCenter(itemCenterPos);
         this.items.add(item);
     }
 
@@ -108,7 +97,6 @@ public class Screen {
 
     @Override
     public String toString() {
-        //String itemString = ((null == items)? "null" : items.toString());
         return "Screen [width=" + width + ", height=" + height + ", items=" + String.valueOf(items) + "]";
     }
 }
