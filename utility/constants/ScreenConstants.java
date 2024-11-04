@@ -1,16 +1,19 @@
 package utility.constants;
 
-public enum ScreenConstants {
-    DEFAULT_SCREEN_WIDTH(250),
-    DEFAULT_SCREEN_HEIGHT(250);
+public class ScreenConstants{
 
-    private final int valueInPixels;
+    public enum size{
+        DEFAULT_SCREEN_WIDTH(50),
+        DEFAULT_SCREEN_HEIGHT(50);
 
-    ScreenConstants(int pixels) {
-        this.valueInPixels = pixels;
+        private final int valueInPixels;
+        size(int pixels) {
+            this.valueInPixels = pixels;
+        }
+
+        public int getValueInPixels() {
+            return valueInPixels;
+        }
     }
-
-    public int getValueInPixels() {
-        return valueInPixels;
-    }
+    
 }

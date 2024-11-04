@@ -1,18 +1,4 @@
-Nov 02, 2024 4:30:30 PM utility.logging.LoggUtil info
+Nov 04, 2024 7:09:56 PM utility.logging.LoggUtil info
 INFO: Creating new Screen
-Nov 02, 2024 4:30:30 PM utility.logging.LoggUtil info
-INFO: Instansiated Default Screen: Screen [width=250, height=250, items=[]]
-Nov 02, 2024 4:30:30 PM utility.logging.LoggUtil severe
-SEVERE: Exception
-spinningDonut.exceptions.ScreenCreationException: Screen already exists
-	at spinningDonut.elements.Screen.getInstance(Screen.java:54)
-	at Main.main(Main.java:15)
-
-Nov 02, 2024 4:30:30 PM utility.logging.LoggUtil warning
-WARNING: Attempting to recreate screen
-Nov 02, 2024 4:30:30 PM utility.logging.LoggUtil warning
-WARNING: Attempting to recreate screen
-Nov 02, 2024 4:30:30 PM utility.logging.LoggUtil warning
-WARNING: Attempting to recreate screen
-Nov 02, 2024 4:30:30 PM utility.logging.LoggUtil warning
-WARNING: Attempting to recreate screen
+Nov 04, 2024 7:09:56 PM utility.logging.LoggUtil info
+INFO: Instansiated Default Screen: Screen [width=50, height=50, items=[]]
