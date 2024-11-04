@@ -1,31 +1,31 @@
 package utility.dataTypes;
 
-public class Point2D <K,T> {
-    private K x;
-    private T y;
+public class Point2D {
+    private Integer x;
+    private Integer y;
 
     public Point2D() {
         //Defaults to null
     }
 
-    public Point2D(K x, T y) {
+    public Point2D(Integer x, Integer y) {
         this.x = x;
         this.y = y;
     }
 
-    public K getX() {
+    public Integer getX() {
         return x;
     }
 
-    public void setX(K x) {
+    public void setX(Integer x) {
         this.x = x;
     }
 
-    public T getY() {
+    public Integer getY() {
         return y;
     }
 
-    public void setY(T y) {
+    public void setY(Integer y) {
         this.y = y;
     }
 
@@ -33,6 +33,13 @@ public class Point2D <K,T> {
     public String toString() {
         return "Point2D [x=" + x + ", y=" + y + "]";
     }
+
+    // public void addAndSet(Point2D<Integer> vec) {
+    //     if(this.x instanceof Integer && this.y instanceof Integer){
+    //         this.setX(this.getX()+vec.getX());
+    //         this = new Point2D<Integer>((Integer)this.getX()+vec.getX(),(Integer)this.getY()+vec.getY());
+    //     }
+    // }
 
     
 }

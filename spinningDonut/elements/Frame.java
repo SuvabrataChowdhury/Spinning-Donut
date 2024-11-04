@@ -1,9 +1,12 @@
 package spinningDonut.elements;
 
+import spinningDonut.exceptions.InvalidPositionException;
 import utility.constants.Thickness;
 import utility.dataTypes.Point2D;
 
 public class Frame {
+    private static Frame instance =  null;
+
     char[][] pixels;
 
     public Frame(int width,int height){
@@ -16,13 +19,20 @@ public class Frame {
         }
     }
 
-    public void plot(Point2D<Integer,Integer> pixel,Thickness thickness) {
-        if(isValidPosition(pixel))
-            pixels[pixel.getY()][pixel.getX()] = thickness.getPlotChar();
+    public static Frame getInstance(int width,int height){
+        if(null == Frame.instance)
+            Frame.instance = new Frame(width, height);
+        return Frame.instance;
     }
 
-    private boolean isValidPosition(Point2D<Integer,Integer> pos){
-        return !(pos.getX()<0 || pos.getX()>=pixels[0].length || pos.getY()<0 || pos.getY()>=pixels.length);
+    public void plot(Point2D pixel,Thickness thickness) throws InvalidPositionException {
+        if(!isValidPosition(pixel))
+            throw new InvalidPositionException("Given position ("+pixel.getX()+","+pixel.getY()+")is invalid");
+        pixels[pixel.getY()][pixel.getX()] = thickness.getPlotChar();
+    }
+
+    private boolean isValidPosition(Point2D pos){
+        return ((pos.getX()>=0 && pos.getX()<pixels[0].length) && (pos.getY()>=0 && pos.getY()<pixels.length));
     }
 
     public void display(){
