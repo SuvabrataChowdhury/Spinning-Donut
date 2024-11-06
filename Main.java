@@ -29,7 +29,7 @@ class Main{
             Item square2 = new Square(10);
             //square2.placeInScreen(ScreenConstants.positions.TOP_RIGHT);
             square2.move(new Point2D(screen.getWidth()-6,screen.getHeight()-6));
-            screen.addItem(square2);
+            //screen.addItem(square2);
 
             // Item square3 = new Square(10);
             // screen.addItem(square3);
@@ -37,6 +37,10 @@ class Main{
             // Square square4 = new Square(10);
             // square4.moveCenter(new Point2D<>((screen.getWidth()-1)-5,5));
             // screen.addItem(square4);
+
+            Point2D center = screen.getCenter();
+            //square2.move(new Point2D(center.getX()-44, center.getY()-44));
+            screen.addItem(square2);
 
             screen.render(Thickness.DEFAULT);
             
