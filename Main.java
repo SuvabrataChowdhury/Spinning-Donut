@@ -4,7 +4,6 @@ import spinningDonut.elements.Item;
 import spinningDonut.elements.Screen;
 import spinningDonut.elements.Square;
 import spinningDonut.exceptions.ScreenCreationException;
-import utility.constants.ScreenConstants;
 import utility.constants.Thickness;
 import utility.dataTypes.Point2D;
 import utility.logging.LoggUtil;
@@ -17,30 +16,26 @@ class Main{
         try {
             Screen screen = Screen.getInstance();
 
-            Item square = new Square(10);
-            //square.move(ScreenConstants.position.DEFAULT_SCREEN_CENTER.getCenter());
-            square.move(screen.getCenter());
-            screen.addItem(square);
+            Square centerSquare = new Square(20);
+            centerSquare.moveTo(screen.getCenter());
 
-            Item square1 = new Square(20);
-            square1.move(screen.getCenter());
-            screen.addItem(square1);
+            Square square1 = new Square(5);
+            square1.moveTo(centerSquare.getTopLeft());
 
-            Item square2 = new Square(10);
-            //square2.placeInScreen(ScreenConstants.positions.TOP_RIGHT);
-            square2.move(new Point2D(screen.getWidth()-6,screen.getHeight()-6));
-            //screen.addItem(square2);
+            Square square2 = new Square(5);
+            square2.moveTo(centerSquare.getTopRight());
 
-            // Item square3 = new Square(10);
-            // screen.addItem(square3);
+            Square square3 = new Square(5);
+            square3.moveTo(centerSquare.getBottomLeft());
 
-            // Square square4 = new Square(10);
-            // square4.moveCenter(new Point2D<>((screen.getWidth()-1)-5,5));
-            // screen.addItem(square4);
+            Square square4 = new Square(5);
+            square4.moveTo(centerSquare.getBottomRight());
 
-            Point2D center = screen.getCenter();
-            //square2.move(new Point2D(center.getX()-44, center.getY()-44));
-            screen.addItem(square2);
+            // screen.addItems(centerSquare);
+            //screen.addItems(centerSquare,square1);
+            screen.addItems(centerSquare,square1,square2);
+            // screen.addItems(centerSquare,square1,square2,square3);
+            // screen.addItems(centerSquare,square1,square2,square3,square4);
 
             screen.render(Thickness.DEFAULT);
             

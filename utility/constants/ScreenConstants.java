@@ -1,5 +1,7 @@
 package utility.constants;
 
+import utility.dataTypes.Point2D;
+
 public class ScreenConstants{
 
     public enum size{
@@ -13,6 +15,19 @@ public class ScreenConstants{
 
         public int getValueInPixels() {
             return valueInPixels;
+        }
+    }
+
+    public enum position{
+        DEFAULT_ITEM_CENTER_IN_SCREEN(new Point2D(0,0));
+
+        private final Point2D itemCenter;
+        position(Point2D itemCenter){
+            this.itemCenter = itemCenter;
+        }
+
+        public Point2D getItemCenter(){
+            return itemCenter;
         }
     }
     

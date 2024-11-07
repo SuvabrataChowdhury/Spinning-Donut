@@ -94,6 +94,11 @@ public class Screen {
         this.items.add(item);
     }
 
+    public void addItems(Item ... items){
+        for(Item item : items)
+            this.items.add(item);
+    }
+
     public void render(Thickness thickness){
         items.stream().forEach(item -> {
             item.getPixels().stream().forEach(pixel -> {

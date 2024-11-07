@@ -34,6 +34,17 @@ public class Point2D {
         return "Point2D [x=" + x + ", y=" + y + "]";
     }
 
+    public Point2D getDisplacement(Point2D dest) {
+        return new Point2D(dest.getX()-this.getX(),dest.getY()-this.getY());
+    }
+
+    public void translate(Point2D trFactor) {
+        this.setX(this.getX()+trFactor.getX());
+        this.setY(this.getY()+trFactor.getY());
+    }
+
+    
+
     // public void addAndSet(Point2D<Integer> vec) {
     //     if(this.x instanceof Integer && this.y instanceof Integer){
     //         this.setX(this.getX()+vec.getX());

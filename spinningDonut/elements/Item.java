@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import utility.dataTypes.Point2D;
 
-public class Item {
+public abstract class Item {
     private List<Point2D> pixels;
+
     //TODO: Field to hold lighting info
 
     public Item() {
@@ -29,12 +30,9 @@ public class Item {
         return "Item [pixels=" + pixels + "]";
     }
 
-    public void move(Point2D trFactor) {
-        this.pixels.stream().forEach(pixel -> {
-            pixel.setX(pixel.getX()+trFactor.getX());
-            pixel.setY(pixel.getY()+trFactor.getY());
+    public abstract void translate(Point2D trFactor);
 
-            // pixel.addAndSet(trFactor);
-        });
-    }
+    public abstract void moveTo(Point2D dest);
+
+    public abstract void construct();
 }
