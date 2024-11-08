@@ -19,23 +19,24 @@ class Main{
             Square centerSquare = new Square(20);
             centerSquare.moveTo(screen.getCenter());
 
-            Square square1 = new Square(5);
-            square1.moveTo(centerSquare.getTopLeft());
+            Square square1 = new Square(16);
+            Point2D topLeft = centerSquare.getTopLeft();
+            square1.moveTo(topLeft);
+            // square1.moveTo(screen.getCenter());
 
             Square square2 = new Square(5);
-            square2.moveTo(centerSquare.getTopRight());
+            Point2D topRight = centerSquare.getTopRight();
+            square2.moveTo(topRight);
 
-            Square square3 = new Square(5);
-            square3.moveTo(centerSquare.getBottomLeft());
+            // Square square3 = new Square(5);
+            // square3.moveTo(centerSquare.getBottomLeft());
 
-            Square square4 = new Square(5);
-            square4.moveTo(centerSquare.getBottomRight());
+            // Square square4 = new Square(5);
+            // square4.moveTo(centerSquare.getBottomRight());
 
-            // screen.addItems(centerSquare);
-            //screen.addItems(centerSquare,square1);
+            // screen.addItems(centerSquare,square2);
+
             screen.addItems(centerSquare,square1,square2);
-            // screen.addItems(centerSquare,square1,square2,square3);
-            // screen.addItems(centerSquare,square1,square2,square3,square4);
 
             screen.render(Thickness.DEFAULT);
             

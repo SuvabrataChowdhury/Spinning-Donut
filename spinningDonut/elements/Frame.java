@@ -9,7 +9,7 @@ public class Frame {
 
     char[][] pixels;
 
-    public Frame(int width,int height){
+    public Frame(final int width,final int height){
         pixels = new char[height][width];
         
         for(int i=0;i<height;i++){
@@ -19,19 +19,19 @@ public class Frame {
         }
     }
 
-    public static Frame getInstance(int width,int height){
+    public static Frame getInstance(final int width,final int height){
         if(null == Frame.instance)
             Frame.instance = new Frame(width, height);
         return Frame.instance;
     }
 
-    public void plot(Point2D pixel,Thickness thickness) throws InvalidPositionException {
+    public void plot(final Point2D pixel,final Thickness thickness) throws InvalidPositionException {
         if(!isValidPosition(pixel))
             throw new InvalidPositionException("Given position ("+pixel.getX()+","+pixel.getY()+")is invalid");
         pixels[pixel.getY()][pixel.getX()] = thickness.getPlotChar();
     }
 
-    private boolean isValidPosition(Point2D pos){
+    private boolean isValidPosition(final Point2D pos){
         return ((pos.getX()>=0 && pos.getX()<pixels[0].length) && (pos.getY()>=0 && pos.getY()<pixels.length));
     }
 

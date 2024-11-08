@@ -39,7 +39,7 @@ public class Screen {
     }
 
     //Create a user-defined screen 
-    private Screen(int width,int height,List<Item> items) throws SecurityException, IOException{
+    private Screen(final int width,final int height,final List<Item> items) throws SecurityException, IOException{
         LOGGER.info("Creating new Screen");
 
         this.width = width;
@@ -62,7 +62,7 @@ public class Screen {
         return Screen.instance;
     }
 
-    public static Screen getInstance(int width,int height,List<Item> items) throws SecurityException, IOException, ScreenCreationException{
+    public static Screen getInstance(final int width,final int height,List<Item> items) throws SecurityException, IOException, ScreenCreationException{
         if(null != Screen.instance)
             throw new ScreenCreationException("Screen already exists");
 
@@ -86,20 +86,20 @@ public class Screen {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(final List<Item> items) {
         this.items = items;
     }
 
-    public void addItem(Item item){
+    public void addItem(final Item item){
         this.items.add(item);
     }
 
-    public void addItems(Item ... items){
+    public void addItems(final Item ... items){
         for(Item item : items)
             this.items.add(item);
     }
 
-    public void render(Thickness thickness){
+    public void render(final Thickness thickness){
         items.stream().forEach(item -> {
             item.getPixels().stream().forEach(pixel -> {
                 try {

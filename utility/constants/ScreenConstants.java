@@ -9,7 +9,7 @@ public class ScreenConstants{
         DEFAULT_SCREEN_HEIGHT(50);
 
         private final int valueInPixels;
-        size(int pixels) {
+        size(final int pixels) {
             this.valueInPixels = pixels;
         }
 
@@ -22,7 +22,7 @@ public class ScreenConstants{
         DEFAULT_ITEM_CENTER_IN_SCREEN(new Point2D(0,0));
 
         private final Point2D itemCenter;
-        position(Point2D itemCenter){
+        position(final Point2D itemCenter){
             this.itemCenter = itemCenter;
         }
 

@@ -13,7 +13,7 @@ public abstract class Item {
         this.pixels = new ArrayList<>();
     }
 
-    public Item(List<Point2D> pixels) {
+    public Item(final List<Point2D> pixels) {
         this.pixels = pixels;
     }
 
@@ -21,7 +21,7 @@ public abstract class Item {
         return pixels;
     }
 
-    public void setPixels(List<Point2D> pixels) {
+    public void setPixels(final List<Point2D> pixels) {
         this.pixels = pixels;
     }
 
@@ -30,9 +30,9 @@ public abstract class Item {
         return "Item [pixels=" + pixels + "]";
     }
 
-    public abstract void translate(Point2D trFactor);
+    public abstract void translate(final Point2D trFactor);
 
-    public abstract void moveTo(Point2D dest);
+    public abstract void moveTo(final Point2D dest);
 
     public abstract void construct();
 }

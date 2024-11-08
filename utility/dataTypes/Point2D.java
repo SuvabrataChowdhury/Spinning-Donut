@@ -8,7 +8,7 @@ public class Point2D {
         //Defaults to null
     }
 
-    public Point2D(Integer x, Integer y) {
+    public Point2D(final Integer x,final Integer y) {
         this.x = x;
         this.y = y;
     }
@@ -17,7 +17,7 @@ public class Point2D {
         return x;
     }
 
-    public void setX(Integer x) {
+    public void setX(final Integer x) {
         this.x = x;
     }
 
@@ -25,7 +25,7 @@ public class Point2D {
         return y;
     }
 
-    public void setY(Integer y) {
+    public void setY(final Integer y) {
         this.y = y;
     }
 
@@ -34,11 +34,11 @@ public class Point2D {
         return "Point2D [x=" + x + ", y=" + y + "]";
     }
 
-    public Point2D getDisplacement(Point2D dest) {
-        return new Point2D(dest.getX()-this.getX(),dest.getY()-this.getY());
+    public static Point2D getDisplacement(final Point2D src, final Point2D dest) {
+        return new Point2D(dest.getX()-src.getX(),dest.getY()-src.getY());
     }
 
-    public void translate(Point2D trFactor) {
+    public void translate(final Point2D trFactor) {
         this.setX(this.getX()+trFactor.getX());
         this.setY(this.getY()+trFactor.getY());
     }

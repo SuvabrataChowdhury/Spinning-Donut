@@ -5,7 +5,7 @@ public enum Thickness {
 
     private final char plotChar;
 
-    Thickness(char plotChar){
+    Thickness(final char plotChar){
         this.plotChar = plotChar;
     }
 

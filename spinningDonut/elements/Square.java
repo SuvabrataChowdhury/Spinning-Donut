@@ -9,7 +9,7 @@ public class Square extends Item {
     private int sideLength;
     private Point2D center = ScreenConstants.position.DEFAULT_ITEM_CENTER_IN_SCREEN.getItemCenter();
 
-    public Square(int sideLength){
+    public Square(final int sideLength){
         this.sideLength = sideLength;
         this.construct();
     }
@@ -25,7 +25,8 @@ public class Square extends Item {
      //TODO: Construct square with Bresenham lines
      @Override
      public void construct(){
-         Point2D point = this.findTopLeft();
+        //  Point2D point = this.findTopLeft();
+         Point2D point = this.getTopLeft();
  
          List<Point2D> pixels = this.getPixels();
          pixels.add(new Point2D(point.getX(),point.getY()));
@@ -51,7 +52,7 @@ public class Square extends Item {
      }
 
     @Override
-    public void translate(Point2D trFactor){
+    public void translate(final Point2D trFactor){
         this.center.setX(this.center.getX()+trFactor.getX());
         this.center.setY(this.center.getY()+trFactor.getY());
 
@@ -61,8 +62,8 @@ public class Square extends Item {
     }
 
     @Override
-    public void moveTo(Point2D dest){
-        Point2D displacementToDest = this.center.getDisplacement(dest);
+    public void moveTo(final Point2D dest){
+        Point2D displacementToDest = Point2D.getDisplacement(this.center,dest);
 
         this.center.setX(dest.getX());
         this.center.setY(dest.getY());
