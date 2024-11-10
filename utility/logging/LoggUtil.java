@@ -16,7 +16,7 @@ public class LoggUtil{
     private FileHandler fileHandler;
     private static boolean isFirstCall = true;
 
-    private LoggUtil(String className) {
+    private LoggUtil(final String className) {
         
         LOGGER = Logger.getLogger(className);
         
@@ -38,7 +38,7 @@ public class LoggUtil{
         LoggUtil.isFirstCall = false;
     }
 
-    public static LoggUtil getInstance(String className) {
+    public static LoggUtil getInstance(final String className) {
         if(null == instance)
             LoggUtil.instance = new LoggUtil(className);
 
@@ -46,17 +46,17 @@ public class LoggUtil{
     }
     
     //Log info
-    public void info(String msg){
+    public void info(final String msg){
         this.LOGGER.info(msg);
     }
 
     //Log warnings
-    public void warning(String string) {
+    public void warning(final String string) {
         this.LOGGER.warning(string);
     }
 
     //Log exceptions
-    public void severe(String msg, Exception exception){
+    public void severe(final String msg, final Exception exception){
         this.LOGGER.log(Level.SEVERE,msg,exception);
     }
 }

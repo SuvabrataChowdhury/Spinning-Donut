@@ -1,10 +1,11 @@
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import spinningDonut.elements.Item;
 import spinningDonut.elements.Screen;
 import spinningDonut.elements.Square;
 import spinningDonut.exceptions.ScreenCreationException;
-import utility.constants.ScreenConstants;
 import utility.constants.Thickness;
 import utility.dataTypes.Point2D;
 import utility.logging.LoggUtil;
@@ -12,35 +13,43 @@ import utility.logging.LoggUtil;
 class Main{
     private static LoggUtil LOGGER = LoggUtil.getInstance(Main.class.getName());
 
-    public static void main(String[] args) throws SecurityException, IOException, ScreenCreationException {
+    public static void main(String[] args) throws SecurityException, IOException, ScreenCreationException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException {
 
         try {
-            Screen screen = Screen.getInstance();
+            Screen screen = Screen.getInstance(100,100);
 
-            Item square = new Square(10);
-            //square.move(ScreenConstants.position.DEFAULT_SCREEN_CENTER.getCenter());
-            square.move(screen.getCenter());
-            screen.addItem(square);
+            Square preSquare = new Square(10);
+            preSquare.translate(new Point2D(5,5));
+            screen.addItem(preSquare);
 
-            Item square1 = new Square(20);
-            square1.move(screen.getCenter());
-            screen.addItem(square1);
+            for(int sideLength=preSquare.getSideLength()+5;;sideLength+=5){
+                Square square = new Square(sideLength);
+                square.moveTo(preSquare.getBottomRight());
 
-            Item square2 = new Square(10);
-            //square2.placeInScreen(ScreenConstants.positions.TOP_RIGHT);
-            square2.move(new Point2D(screen.getWidth()-6,screen.getHeight()-6));
-            //screen.addItem(square2);
+                if(screen.isOutside(square))
+                    break;
+                screen.addItem(square);
+                preSquare = square;
+            }
 
-            // Item square3 = new Square(10);
-            // screen.addItem(square3);
+            // Square centerSquare = new Square(20);
+            // centerSquare.moveTo(screen.getCenter());
+
+            // Square square1 = new Square(10);
+            // Point2D topLeft = centerSquare.getTopLeft();
+            // square1.moveTo(topLeft);
+
+            // Square square2 = new Square(10);
+            // Point2D topRight = centerSquare.getTopRight();
+            // square2.moveTo(topRight);
+
+            // Square square3 = new Square(10);
+            // square3.moveTo(centerSquare.getBottomLeft());
 
             // Square square4 = new Square(10);
-            // square4.moveCenter(new Point2D<>((screen.getWidth()-1)-5,5));
-            // screen.addItem(square4);
+            // square4.moveTo(centerSquare.getBottomRight());
 
-            Point2D center = screen.getCenter();
-            //square2.move(new Point2D(center.getX()-44, center.getY()-44));
-            screen.addItem(square2);
+            // screen.addItems(centerSquare,square1,square2,square3,square4);
 
             screen.render(Thickness.DEFAULT);
             

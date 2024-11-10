@@ -1,31 +1,31 @@
 package utility.dataTypes;
 
 public class Point2D {
-    private Integer x;
-    private Integer y;
+    private int x;
+    private int y;
 
     public Point2D() {
         //Defaults to null
     }
 
-    public Point2D(Integer x, Integer y) {
+    public Point2D(final int x,final int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Integer getX() {
+    public int getX() {
         return x;
     }
 
-    public void setX(Integer x) {
+    public void setX(final int x) {
         this.x = x;
     }
 
-    public Integer getY() {
+    public int getY() {
         return y;
     }
 
-    public void setY(Integer y) {
+    public void setY(final int y) {
         this.y = y;
     }
 
@@ -34,10 +34,21 @@ public class Point2D {
         return "Point2D [x=" + x + ", y=" + y + "]";
     }
 
-    // public void addAndSet(Point2D<Integer> vec) {
-    //     if(this.x instanceof Integer && this.y instanceof Integer){
+    public static Point2D getDisplacement(final Point2D src, final Point2D dest) {
+        return new Point2D(dest.getX()-src.getX(),dest.getY()-src.getY());
+    }
+
+    public void translate(final Point2D trFactor) {
+        this.setX(this.getX()+trFactor.getX());
+        this.setY(this.getY()+trFactor.getY());
+    }
+
+    
+
+    // public void addAndSet(Point2D<int> vec) {
+    //     if(this.x instanceof int && this.y instanceof int){
     //         this.setX(this.getX()+vec.getX());
-    //         this = new Point2D<Integer>((Integer)this.getX()+vec.getX(),(Integer)this.getY()+vec.getY());
+    //         this = new Point2D<int>((int)this.getX()+vec.getX(),(int)this.getY()+vec.getY());
     //     }
     // }
 
