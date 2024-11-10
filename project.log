@@ -1,4 +1,4 @@
-Nov 08, 2024 7:30:59 PM utility.logging.LoggUtil info
+Nov 10, 2024 8:10:31 PM utility.logging.LoggUtil info
 INFO: Creating new Screen
-Nov 08, 2024 7:30:59 PM utility.logging.LoggUtil info
-INFO: Instansiated Default Screen: Screen [width=50, height=50, items=[]]
+Nov 10, 2024 8:10:31 PM utility.logging.LoggUtil info
+INFO: Instansiated User Defined Screen: Screen [width=100, height=100, items=[]]

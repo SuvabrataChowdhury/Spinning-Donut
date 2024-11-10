@@ -2,6 +2,8 @@ package spinningDonut.elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import utility.dataTypes.Point2D;
 
 public abstract class Item {
@@ -35,4 +37,11 @@ public abstract class Item {
     public abstract void moveTo(final Point2D dest);
 
     public abstract void construct();
+
+    //TODO: Make it more general so that both screen and items work
+    // public boolean isOutside(Screen screen){
+    //     return this.pixels.stream().filter(pixel -> 
+    //         ((pixel.getX()<0 || pixel.getX()>=screen.getWidth()) || (pixel.getY() < 0 || pixel.getY()<screen.getHeight()))
+    //     ).collect(Collectors.toList()).isEmpty();
+    // }
 }

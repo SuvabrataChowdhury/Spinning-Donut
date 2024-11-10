@@ -1,5 +1,6 @@
 package spinningDonut.elements;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import utility.constants.ScreenConstants;
@@ -7,10 +8,13 @@ import utility.dataTypes.Point2D;
 
 public class Square extends Item {
     private int sideLength;
-    private Point2D center = ScreenConstants.position.DEFAULT_ITEM_CENTER_IN_SCREEN.getItemCenter();
+    private Point2D center;
 
-    public Square(final int sideLength){
+    public Square(final int sideLength) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
         this.sideLength = sideLength;
+        // this.center = new Point2D(0,0); //TODO: Make this more redable. DefaultItemCenterInScreen is at (0,0).
+        this.center = ScreenConstants.position.DEFAULT_ITEM_CENTER_IN_SCREEN.getItemCenter();
+
         this.construct();
     }
 
@@ -73,14 +77,14 @@ public class Square extends Item {
         });
     }
  
-    private Point2D findTopLeft(){
-        Point2D result = new Point2D();
+    // private Point2D findTopLeft(){
+    //     Point2D result = new Point2D();
         
-        result.setX(this.center.getX()-this.sideLength/2);
-        result.setY(this.center.getY()-this.sideLength/2);
+    //     result.setX(this.center.getX()-this.sideLength/2);
+    //     result.setY(this.center.getY()-this.sideLength/2);
 
-        return result;
-    }
+    //     return result;
+    // }
 
     public Point2D getTopLeft(){
         return new Point2D(this.center.getX()-this.sideLength/2,this.center.getY()-this.sideLength/2);
@@ -97,6 +101,4 @@ public class Square extends Item {
     public Point2D getBottomRight(){
         return new Point2D(this.center.getX()+this.sideLength/2,this.center.getY()+this.sideLength/2);
     }
-
-
 }

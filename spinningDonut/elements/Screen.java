@@ -3,6 +3,7 @@ package spinningDonut.elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import utility.constants.ScreenConstants;
 import utility.constants.Thickness;
@@ -39,7 +40,7 @@ public class Screen {
     }
 
     //Create a user-defined screen 
-    private Screen(final int width,final int height,final List<Item> items) throws SecurityException, IOException{
+    private Screen(final int width,final int height) throws SecurityException, IOException{
         LOGGER.info("Creating new Screen");
 
         this.width = width;
@@ -47,7 +48,7 @@ public class Screen {
 
         this.center = new Point2D(this.width/2,this.height/2);
 
-        this.items = items;
+        this.items = new ArrayList<>();
         this.frame = new Frame(width, height);
         
         LOGGER.info("Instansiated User Defined Screen: "+this);
@@ -62,11 +63,11 @@ public class Screen {
         return Screen.instance;
     }
 
-    public static Screen getInstance(final int width,final int height,List<Item> items) throws SecurityException, IOException, ScreenCreationException{
+    public static Screen getInstance(final int width,final int height) throws SecurityException, IOException, ScreenCreationException{
         if(null != Screen.instance)
             throw new ScreenCreationException("Screen already exists");
 
-        Screen.instance = new Screen(width,height,items);
+        Screen.instance = new Screen(width,height);
         return Screen.instance;
     }
 
@@ -86,9 +87,9 @@ public class Screen {
         return items;
     }
 
-    public void setItems(final List<Item> items) {
-        this.items = items;
-    }
+    // public void setItems(final List<Item> items) {
+    //     this.items = items;
+    // }
 
     public void addItem(final Item item){
         this.items.add(item);
@@ -112,6 +113,20 @@ public class Screen {
         });
 
         frame.display();
+    }
+
+    public boolean isOutside(Item item){
+       for(Point2D pixel : item.getPixels()){
+            if(this.isOutside(pixel))
+                return true;
+       }
+
+        return false;
+    }
+
+    public boolean isOutside(Point2D pixel){
+        return (pixel.getX()<0 || pixel.getY()<0)
+            || (pixel.getX()>=this.width || pixel.getY()>=this.height);
     }
 
     @Override

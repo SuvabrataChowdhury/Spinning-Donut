@@ -1,5 +1,9 @@
 package utility.constants;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
+
 import utility.dataTypes.Point2D;
 
 public class ScreenConstants{
@@ -26,8 +30,9 @@ public class ScreenConstants{
             this.itemCenter = itemCenter;
         }
 
-        public Point2D getItemCenter(){
-            return itemCenter;
+        public Point2D getItemCenter() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+            //TODO: Make it more readable
+            return itemCenter.getClass().getDeclaredConstructor(new Class<?>[0]).newInstance(new Object[0]);
         }
     }
     
