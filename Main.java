@@ -6,10 +6,13 @@ import spinningDonut.elements.Item;
 import spinningDonut.elements.Screen;
 import spinningDonut.elements.Square;
 import spinningDonut.exceptions.ScreenCreationException;
+import utility.constants.ScreenConstants;
 import utility.constants.Thickness;
 import utility.dataTypes.Point2D;
 import utility.logging.LoggUtil;
 
+//TODO: Make Relative Positioning Possible
+//TODO: Be able to group items
 class Main{
     private static LoggUtil LOGGER = LoggUtil.getInstance(Main.class.getName());
 
@@ -18,38 +21,42 @@ class Main{
         try {
             Screen screen = Screen.getInstance(100,100);
 
-            Square preSquare = new Square(10);
-            preSquare.translate(new Point2D(5,5));
-            screen.addItem(preSquare);
+            Square face = new Square(20);
+            face.moveTo(screen.getCenter());
 
-            for(int sideLength=preSquare.getSideLength()+5;;sideLength+=5){
-                Square square = new Square(sideLength);
-                square.moveTo(preSquare.getBottomRight());
+            Square eye1 = new Square(5);
+            eye1.moveTo(screen.getCenter());
+            eye1.translate(new Point2D(-5,-5));
 
-                if(screen.isOutside(square))
-                    break;
-                screen.addItem(square);
-                preSquare = square;
-            }
+            Square eye2 = new Square(5);
+            eye2.moveTo(screen.getCenter());
+            eye2.translate(new Point2D(5,-5));
 
-            // Square centerSquare = new Square(20);
-            // centerSquare.moveTo(screen.getCenter());
+            Square mouth = new Square(5);
+            mouth.moveTo(screen.getCenter());
+            mouth.translate(new Point2D(0,5));
 
-            // Square square1 = new Square(10);
-            // Point2D topLeft = centerSquare.getTopLeft();
-            // square1.moveTo(topLeft);
+            Square body = new Square(30);
+            body.moveTo(screen.getCenter());
+            body.translate(new Point2D(0,25));
 
-            // Square square2 = new Square(10);
-            // Point2D topRight = centerSquare.getTopRight();
-            // square2.moveTo(topRight);
+            Square rightArm = new Square(10);
+            rightArm.moveTo(screen.getCenter());
+            rightArm.translate(new Point2D(-20,15));
 
-            // Square square3 = new Square(10);
-            // square3.moveTo(centerSquare.getBottomLeft());
+            Square leftArm = new Square(10);
+            leftArm.moveTo(screen.getCenter());
+            leftArm.translate(new Point2D(20,15));
 
-            // Square square4 = new Square(10);
-            // square4.moveTo(centerSquare.getBottomRight());
+            Square rightLeg = new Square(7);
+            rightLeg.moveTo(screen.getCenter());
+            rightLeg.translate(new Point2D(-15,43));
 
-            // screen.addItems(centerSquare,square1,square2,square3,square4);
+            Square leftLeg = new Square(7);
+            leftLeg.moveTo(screen.getCenter());
+            leftLeg.translate(new Point2D(15,43));
+
+            screen.addItems(face,eye1,eye2,mouth,body,rightArm,leftArm,rightLeg,leftLeg);
 
             screen.render(Thickness.DEFAULT);
             
