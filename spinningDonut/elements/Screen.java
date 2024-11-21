@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import utility.constants.ScreenConstants;
 import utility.constants.Thickness;
@@ -132,5 +133,9 @@ public class Screen {
     @Override
     public String toString() {
         return "Screen [width=" + width + ", height=" + height + ", items=" + String.valueOf(items) + "]";
+    }
+
+    public void addItems(List<Item> items) {
+       this.items = Stream.concat(this.items.stream(), items.stream()).toList();
     }
 }

@@ -101,4 +101,9 @@ public class Square extends Item {
     public Point2D getBottomRight(){
         return new Point2D(this.center.getX()+this.sideLength/2,this.center.getY()+this.sideLength/2);
     }
+
+    public void toLeftEdge(Screen screen) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toLeftEdge'");
+    }
 }

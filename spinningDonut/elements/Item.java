@@ -8,7 +8,8 @@ import utility.dataTypes.Point2D;
 
 public abstract class Item {
     private List<Point2D> pixels;
-
+    private Point2D center;
+    
     //TODO: Field to hold lighting info
 
     public Item() {
@@ -37,6 +38,18 @@ public abstract class Item {
     public abstract void moveTo(final Point2D dest);
 
     public abstract void construct();
+
+    public Point2D getCenter() {
+        return center;
+    }
+
+    // private void setCenter(Point2D center) {
+    //     this.center = center;
+    // }
+
+    // public void updateCenter(Point2D center){
+    //     this.setCenter(center);
+    // }
 
     //TODO: Make it more general so that both screen and items work
     // public boolean isOutside(Screen screen){

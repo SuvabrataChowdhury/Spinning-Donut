@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import spinningDonut.elements.GroupItems;
 import spinningDonut.elements.Item;
 import spinningDonut.elements.Screen;
 import spinningDonut.elements.Square;
@@ -12,7 +13,8 @@ import utility.dataTypes.Point2D;
 import utility.logging.LoggUtil;
 
 //TODO: Make Relative Positioning Possible
-//TODO: Be able to group items
+//TODO: Be able to group items [Done]
+//TODO: Refactor GroupItems so that it acts as an Item
 class Main{
     private static LoggUtil LOGGER = LoggUtil.getInstance(Main.class.getName());
 
@@ -20,6 +22,23 @@ class Main{
 
         try {
             Screen screen = Screen.getInstance(100,100);
+
+            // Square square1 = new Square(5);
+            // square1.moveTo(screen.getCenter());
+
+            // Square square2 = new Square(10);
+            // square2.moveTo(screen.getCenter());
+            // square2.translate(new Point2D(0,15));
+
+            // Square square3 = new Square(5);
+            // square3.moveTo(screen.getCenter());
+            // square3.translate(new Point2D(0,30));
+            
+
+            // screen.addItems(square1,square2,square3);
+
+            // GroupItems squares = new GroupItems(square1,square2,square3);
+            // squares.moveTo(screen.getCenter());
 
             Square face = new Square(20);
             face.moveTo(screen.getCenter());
@@ -56,7 +75,14 @@ class Main{
             leftLeg.moveTo(screen.getCenter());
             leftLeg.translate(new Point2D(15,43));
 
-            screen.addItems(face,eye1,eye2,mouth,body,rightArm,leftArm,rightLeg,leftLeg);
+            GroupItems model = new GroupItems(face,eye1,eye2,mouth,body,rightArm,leftArm,rightLeg,leftLeg);
+            model.moveTo(screen.getCenter());
+
+            model.translate(new Point2D(20,15));
+
+            screen.addItems(model.getItems());
+
+            // screen.addItems(face,eye1,eye2,mouth,body,rightArm,leftArm,rightLeg,leftLeg);
 
             screen.render(Thickness.DEFAULT);
             
