@@ -5,7 +5,8 @@ public class Point2D {
     private int y;
 
     public Point2D() {
-        //Defaults to null
+       this.x = 0;
+       this.y = 0;
     }
 
     public Point2D(final int x,final int y) {
