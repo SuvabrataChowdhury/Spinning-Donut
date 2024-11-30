@@ -80,6 +80,9 @@ class Main{
 
             model.translate(new Point2D(20,15));
 
+            // Square centerSquare = new Square(5);
+            // centerSquare.moveTo(model.getCenter());
+
             screen.addItems(model.getItems());
 
             // screen.addItems(face,eye1,eye2,mouth,body,rightArm,leftArm,rightLeg,leftLeg);
