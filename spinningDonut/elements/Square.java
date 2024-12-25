@@ -1,16 +1,20 @@
 package spinningDonut.elements;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 import utility.constants.ScreenConstants;
 import utility.dataTypes.Point2D;
 
-public class Square extends Item {
-    private int sideLength;
+public class Square implements Item {
+    private List<Point2D> pixels;
+    
     private Point2D center;
+    private int sideLength;
 
     public Square(final int sideLength) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+        pixels = new ArrayList<>();
         this.sideLength = sideLength;
         // this.center = new Point2D(0,0); //TODO: Make this more redable. DefaultItemCenterInScreen is at (0,0).
         this.center = ScreenConstants.position.DEFAULT_ITEM_CENTER_IN_SCREEN.getItemCenter();
@@ -18,42 +22,48 @@ public class Square extends Item {
         this.construct();
     }
 
-    public int getSideLength() {
-        return sideLength;
+    //TODO: Construct square with Bresenham lines
+    private void construct(){
+        //  Point2D point = this.findTopLeft();
+        Point2D point = this.getTopLeft();
+ 
+        List<Point2D> pixels = this.getPixels();
+        pixels.add(new Point2D(point.getX(),point.getY()));
+ 
+        for(int i=0;i<this.sideLength;i++){
+             //Move point
+            point.setX(point.getX()+1);
+ 
+             //Construct Top edge
+            pixels.add(new Point2D(point.getX(),point.getY()));
+ 
+             //Construct Left edge
+            pixels.add(new Point2D(point.getY(),point.getX()));
+ 
+             //Construct bottom edge
+            pixels.add(new Point2D(point.getX(),point.getY()+this.sideLength));
+ 
+             //Construct right edge
+            pixels.add(new Point2D(point.getY()+this.sideLength, point.getX()));
+        }
+ 
+        this.setPixels(pixels);
+     }
+
+    @Override
+    public List<Point2D> getPixels() {
+        return this.pixels;
     }
 
+    @Override
+    public void setPixels(List<Point2D> pixels) {
+        this.pixels = pixels;
+    }
+
+    @Override
     public Point2D getCenter(){
         return this.center;
     }
-
-     //TODO: Construct square with Bresenham lines
-     @Override
-     public void construct(){
-        //  Point2D point = this.findTopLeft();
-         Point2D point = this.getTopLeft();
- 
-         List<Point2D> pixels = this.getPixels();
-         pixels.add(new Point2D(point.getX(),point.getY()));
- 
-         for(int i=0;i<this.sideLength;i++){
-             //Move point
-             point.setX(point.getX()+1);
- 
-             //Construct Top edge
-             pixels.add(new Point2D(point.getX(),point.getY()));
- 
-             //Construct Left edge
-             pixels.add(new Point2D(point.getY(),point.getX()));
- 
-             //Construct bottom edge
-             pixels.add(new Point2D(point.getX(),point.getY()+this.sideLength));
- 
-             //Construct right edge
-             pixels.add(new Point2D(point.getY()+this.sideLength, point.getX()));
-         }
- 
-         this.setPixels(pixels);
-     }
 
     @Override
     public void translate(final Point2D trFactor){
@@ -75,6 +85,10 @@ public class Square extends Item {
         this.getPixels().stream().forEach(pixel -> {
             pixel.translate(displacementToDest);
         });
+    }
+
+    public int getSideLength() {
+        return sideLength;
     }
  
     // private Point2D findTopLeft(){

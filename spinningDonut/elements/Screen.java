@@ -102,16 +102,13 @@ public class Screen {
     }
 
     public void render(final Thickness thickness){
-        items.stream().forEach(item -> {
-            item.getPixels().stream().forEach(pixel -> {
-                try {
-                    frame.plot(pixel,thickness);
-                } catch (InvalidPositionException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            });
-        });
+        for(Item item : items){
+            try{
+                frame.plot(item,thickness);
+            }catch(InvalidPositionException e){
+                e.printStackTrace();;
+            }
+        }
 
         frame.display();
     }

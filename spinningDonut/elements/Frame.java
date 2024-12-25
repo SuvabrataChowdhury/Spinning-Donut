@@ -25,6 +25,12 @@ public class Frame {
         return Frame.instance;
     }
 
+    public void plot(Item item, Thickness thickness) throws InvalidPositionException {
+        for(Point2D pixel : item.getPixels()){
+            this.plot(pixel,thickness);
+        }
+    }
+
     public void plot(final Point2D pixel,final Thickness thickness) throws InvalidPositionException {
         if(!isValidPosition(pixel))
             throw new InvalidPositionException("Given position ("+pixel.getX()+","+pixel.getY()+")is invalid");
