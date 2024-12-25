@@ -14,6 +14,11 @@ public class Point2D {
         this.y = y;
     }
 
+    public Point2D(final Point2D point){
+      this.x = point.getX();
+      this.y = point.getY();
+    }
+
     public int getX() {
         return x;
     }
